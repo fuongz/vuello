@@ -1,0 +1,33 @@
+.BoardHome {
+  @apply bg-blue-900 min-h-screen overflow-x-auto;
+  background-size: cover;
+  background-image: url('https://i.picsum.photos/id/825/1920/1080.jpg');
+}
+
+.TaskGroup-card {
+  &.TaskGroup-card--create {
+    @apply rounded w-64 p-2 mr-3;
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+}
+
+.Card-Text {
+  @apply mt-3 py-1 px-2 text-gray-600 cursor-pointer;
+
+  &.Card-Text--with-icon {
+    padding-left: 30px;
+    @apply relative;
+
+    > .icon {
+      @apply absolute;
+      top: 50%;
+      left: 0.5rem;
+      transform: translateY(-50%);
+
+      > svg {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+}

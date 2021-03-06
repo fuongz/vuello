@@ -1,0 +1,45 @@
+// Form input field
+.form-input {
+  @apply mb-4;
+
+  label {
+    @apply block text-gray-700 text-sm font-bold mb-2;
+  }
+
+  input[type='email'],
+  input[type='text'],
+  input[type='password'],
+  textarea {
+    @apply appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+
+    &:focus {
+      @apply outline-none shadow-outline;
+    }
+  }
+}
+
+// Form submit button
+.form-submit {
+  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded block w-full;
+
+  &:hover {
+    @apply bg-blue-700;
+  }
+
+  &:focus {
+    @apply outline-none shadow-outline;
+  }
+}
+
+// Form error
+.form-error {
+  @apply text-red-500 text-xs italic mt-2;
+}
+
+// Login form
+.form {
+  &.form--login,
+  &.form--register {
+    @apply bg-white shadow rounded px-8 pt-6 pb-8 mb-4;
+  }
+}
