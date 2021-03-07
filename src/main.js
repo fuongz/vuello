@@ -8,6 +8,7 @@ import VueCookies from 'vue-cookies'
 import VModal from 'vue-js-modal'
 import VeeValidate from 'vee-validate'
 import Unicon from 'vue-unicons'
+import VueCompositionAPI from '@vue/composition-api'
 
 // Import in app files
 import { uniPlus, uniLayerGroup, uniAngleDown } from 'vue-unicons/src/icons'
@@ -17,6 +18,7 @@ import store from './store'
 import { setupLoggedInUser } from './api/user'
 
 // DI
+Vue.use(VueCompositionAPI)
 Vue.use(VueCookies)
 Vue.use(VeeValidate)
 Vue.use(VModal, { dynamic: true, dynamicDefaults: { clickToClose: false } })

@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <UILoading />
+    <ui-loading />
     <router-view />
   </div>
 </template>
 
 <script>
-import UILoading from './components/Loading.vue'
+import UiLoading from './components/Loading.vue'
 
 export default {
   components: {
-    UILoading,
+    UiLoading,
   },
 }
 </script>
