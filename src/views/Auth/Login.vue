@@ -31,17 +31,20 @@
           </div>
 
           <div class="flex items-center justify-between">
-            <button class="form-submit" type="submit" :disabled="isLoading">Sign In</button>
+            <ui-button variant="primary" :is-busy="isLoading">
+              Sign In
+            </ui-button>
           </div>
 
           <router-link
             to="register"
             class="mt-4 text-center block text-sm text-blue-500 align-baseline hover:text-blue-800"
-            >Don't have an account? Signup</router-link
           >
+            Don't have an account? Signup
+          </router-link>
         </form>
         <p class="text-center text-gray-500 text-xs">
-          &copy;2020 Lumen Starter Project. All rights reserved.
+          &copy; 2021 Vuello Project. All rights reserved.
         </p>
       </div>
     </div>
@@ -49,7 +52,8 @@
 </template>
 
 <script>
-import { signInWithEmailAndPassword } from '../../api/user';
+import { signInWithEmailAndPassword } from '../../api/user'
+import UiButton from './../../components/ui/Button.vue'
 
 export default {
   data() {
@@ -57,23 +61,26 @@ export default {
       email: '',
       password: '',
       isLoading: false,
-    };
+    }
   },
+
+  components: { UiButton },
+
   methods: {
     $t(field) {
-      return field;
+      return field
     },
     async submit() {
-      const { email, password } = this;
+      const { email, password } = this
       if (email && password) {
-        this.isLoading = true;
-        const data = await signInWithEmailAndPassword(email, password);
+        this.isLoading = true
+        const data = await signInWithEmailAndPassword(email, password)
 
-        const { token, user } = data;
-        this.$store.dispatch('user/login', { token, user });
-        this.$router.push('/');
+        const { token, user } = data
+        this.$store.dispatch('user/login', { token, user })
+        this.$router.push('/')
       }
     },
   },
-};
+}
 </script>

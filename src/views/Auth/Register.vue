@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import { signUp } from '../../api/user';
+import { signUp } from '../../api/user'
 
 export default {
   data() {
@@ -104,37 +104,37 @@ export default {
           value: '',
         },
       },
-    };
+    }
   },
   methods: {
     $t(field) {
-      return field;
+      return field
     },
     async submit() {
-      this.$store.dispatch('ui/setLoading', true);
-      const validator = await this.$validator.validateAll();
+      this.$store.dispatch('ui/setLoading', true)
+      const validator = await this.$validator.validateAll()
       if (validator) {
         // eslint-disable-next-line object-curly-newline
-        const { email, password, firstName, lastName } = this.user;
+        const { email, password, firstName, lastName } = this.user
 
         const res = await signUp({
           email: email.value,
           password: password.value,
           firstName: firstName.value,
           lastName: lastName.value,
-        });
+        })
 
         if (res.status === 1) {
-          this.resErrors = [];
-          const { token, user } = res.data;
-          this.$store.dispatch('user/login', { token, user });
-          this.$router.push('/');
+          this.resErrors = []
+          const { token, user } = res.data
+          this.$store.dispatch('user/login', { token, user })
+          this.$router.push('/')
         } else if (res.status === 0) {
-          this.resErrors = res.message;
+          this.resErrors = res.message
         }
       }
-      this.$store.dispatch('ui/setLoading', false);
+      this.$store.dispatch('ui/setLoading', false)
     },
   },
-};
+}
 </script>

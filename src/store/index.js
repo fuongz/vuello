@@ -1,13 +1,13 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-import ui from './modules/ui';
-import user from './modules/user';
-import board from './modules/board';
-import taskGroup from './modules/taskGroup';
-import task from './modules/task';
+import ui from './modules/ui'
+import user from './modules/user'
+import board from './modules/board'
+import taskGroup from './modules/taskGroup'
+import task from './modules/task'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
@@ -17,4 +17,4 @@ export default new Vuex.Store({
     taskGroup,
     task,
   },
-});
+})

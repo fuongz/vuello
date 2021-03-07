@@ -22,9 +22,7 @@
           </button>
           <button
             @click="$modal.hide('confirm-delete-modal')"
-            class="text-gray-800
-            font-semibold py-2 px-4 border bg-gray-300
-            rounded"
+            class="text-gray-800 font-semibold py-2 px-4 border bg-gray-300 rounded"
           >
             Close
           </button>
@@ -35,22 +33,22 @@
 </template>
 
 <script>
-import { close } from '../../api/board';
+import { close } from '../../api/board'
 
 export default {
   data() {
     return {
       boardId: 0,
-    };
+    }
   },
   methods: {
     beforeOpen(event) {
-      this.boardId = event.params.id;
+      this.boardId = event.params.id
     },
     async closeBoard() {
-      await close(this.boardId);
-      return this.$router.push('/');
+      await close(this.boardId)
+      return this.$router.push('/')
     },
   },
-};
+}
 </script>

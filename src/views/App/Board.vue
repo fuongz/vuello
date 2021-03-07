@@ -13,15 +13,15 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from 'vuex'
 
-import { getBoard } from '../../api/board';
+import { getBoard } from '../../api/board'
 
-import Header from '../../components/layout/Header.vue';
-import Modal from '../../components/Modal.vue';
+import Header from '../../components/layout/Header.vue'
+import Modal from '../../components/Modal.vue'
 
-import BoardHeader from '../../components/Board/Header.vue';
-import BoardColumn from '../../components/Board/Column.vue';
+import BoardHeader from '../../components/Board/Header.vue'
+import BoardColumn from '../../components/Board/Column.vue'
 
 export default {
   components: {
@@ -32,13 +32,13 @@ export default {
   },
   computed: mapState(['user', 'board']),
   beforeCreate() {
-    this.$store.dispatch('ui/setLoading', true);
+    this.$store.dispatch('ui/setLoading', true)
   },
   async created() {
-    const res = await getBoard(this.$route.params.id);
-    this.$store.dispatch('board/setBoard', res);
-    this.$store.dispatch('ui/setLoading', false);
+    const res = await getBoard(this.$route.params.id)
+    this.$store.dispatch('board/setBoard', res)
+    this.$store.dispatch('ui/setLoading', false)
   },
   methods: {},
-};
+}
 </script>

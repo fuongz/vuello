@@ -11,11 +11,13 @@
         </button>
         <div
           v-show="open"
-          class="mt-px text-sm text-left text-gray-600
-        leading-normal rounded bg-white border p-2 absolute z-50"
+          class="mt-px text-sm text-left text-gray-600 leading-normal rounded bg-white border p-2 absolute z-50"
         >
           <ul>
-            <li @click="editBoard" class="rounded-sm px-3 py-1 cursor-pointer hover:bg-gray-100">
+            <li
+              @click="editBoard"
+              class="rounded-sm px-3 py-1 cursor-pointer hover:bg-gray-100"
+            >
               Edit
             </li>
             <li
@@ -33,8 +35,8 @@
 </template>
 
 <script>
-import OnClickOutside from '../Plugins/OnClickOutSide.vue';
-import ConfirmDeleteModal from './ConfirmDeleteModal.vue';
+import OnClickOutside from '../Plugins/OnClickOutSide.vue'
+import ConfirmDeleteModal from './ConfirmDeleteModal.vue'
 
 export default {
   name: 'DropdownDemo',
@@ -46,18 +48,18 @@ export default {
   data() {
     return {
       open: false,
-    };
+    }
   },
   methods: {
     handleClickOutside() {
       if (this.open) {
-        this.open = false;
+        this.open = false
       }
     },
     closeBoard() {
-      this.$modal.show('confirm-delete-modal', { id: this.board.board.id });
+      this.$modal.show('confirm-delete-modal', { id: this.board.board.id })
     },
     editBoard() {},
   },
-};
+}
 </script>

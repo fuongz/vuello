@@ -2,13 +2,13 @@
 const state = {
   taskGroups: [],
   taskGroup: {},
-};
+}
 
-const actions = {};
+const actions = {}
 
-const mutations = {};
+const mutations = {}
 
-const getters = {};
+const getters = {}
 
 export default {
   namespaced: true,
@@ -16,4 +16,4 @@ export default {
   getters,
   actions,
   mutations,
-};
+}

@@ -11,8 +11,7 @@
               boardId: board.board.id,
             })
           "
-          class="bg-white hover:bg-gray-100 text-gray-600
-          rounded shadow-sm p-8"
+          class="bg-white hover:bg-gray-100 text-gray-600 rounded shadow-sm p-8"
         >
           Create new board
         </button>
@@ -26,13 +25,13 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import { getMe } from '../api/user';
-import { getBoards } from '../api/board';
+import { mapState } from 'vuex'
+import { getMe } from '../api/user'
+import { getBoards } from '../api/board'
 
-import Header from '../components/layout/Header.vue';
-import BoardCard from '../components/Home/Card.vue';
-import CreateBoardModal from '../components/Modals/CreateBoardModal.vue';
+import Header from '../components/layout/Header.vue'
+import BoardCard from '../components/Home/Card.vue'
+import CreateBoardModal from '../components/Modals/CreateBoardModal.vue'
 
 export default {
   name: 'Home',
@@ -43,15 +42,15 @@ export default {
   },
   computed: mapState(['board']),
   beforeCreate() {
-    this.$store.dispatch('ui/setLoading', true);
+    this.$store.dispatch('ui/setLoading', true)
   },
   async created() {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem('user')
     if (!user) {
-      this.$store.dispatch('user/set', await getMe());
+      this.$store.dispatch('user/set', await getMe())
     }
-    this.$store.dispatch('board/set', await getBoards(user.id));
-    this.$store.dispatch('ui/setLoading', false);
+    this.$store.dispatch('board/set', await getBoards(user.id))
+    this.$store.dispatch('ui/setLoading', false)
   },
-};
+}
 </script>

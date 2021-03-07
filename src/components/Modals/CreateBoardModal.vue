@@ -26,7 +26,9 @@
             autofocus
             placeholder="Board name"
           />
-          <p v-show="errors.has('name')" class="form-error">{{ errors.first('name') }}</p>
+          <p v-show="errors.has('name')" class="form-error">
+            {{ errors.first('name') }}
+          </p>
         </div>
 
         <div class="form-input">
@@ -61,8 +63,8 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import { create } from '../../api/board';
+import { mapActions } from 'vuex'
+import { create } from '../../api/board'
 
 export default {
   data() {
@@ -80,31 +82,31 @@ export default {
       backgroundUrl: {
         value: '',
       },
-    };
+    }
   },
   methods: {
     ...mapActions('ui', ['setLoading']),
     beforeOpen() {},
     async submit() {
-      this.setLoading(true);
+      this.setLoading(true)
 
-      const validator = await this.$validator.validateAll();
+      const validator = await this.$validator.validateAll()
       if (validator) {
         try {
           await create({
             name: this.name.value,
             description: this.description.value,
             backgroundUrl: this.backgroundUrl.value,
-          });
-          this.$store.dispatch('board/reload');
-          this.$modal.hide(this.modal.name);
+          })
+          this.$store.dispatch('board/reload')
+          this.$modal.hide(this.modal.name)
         } catch (err) {
-          this.submitErr.message = err;
+          this.submitErr.message = err
         }
       }
 
-      this.setLoading(false);
+      this.setLoading(false)
     },
   },
-};
+}
 </script>

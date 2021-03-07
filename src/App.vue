@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import UILoading from './components/Loading.vue';
+import UILoading from './components/Loading.vue'
 
 export default {
   components: {
     UILoading,
   },
-};
+}
 </script>

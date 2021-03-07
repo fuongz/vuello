@@ -5,10 +5,14 @@
         @click="open = !open"
         type="button"
         class="block bg-blue text-white font-semibold rounded text-right focus:outline-0"
-      >{{ title }}</button>
+      >
+        {{ title }}
+      </button>
       <div v-show="open" class="Dropdown-menu">
         <ul v-for="action in actions" :key="action.label">
-          <li @click="action.handle" :class="action.class">{{ action.label }}</li>
+          <li @click="action.handle" :class="action.class">
+            {{ action.label }}
+          </li>
         </ul>
       </div>
     </div>
@@ -16,13 +20,13 @@
 </template>
 
 <script>
-import OnClickOutside from './Plugins/OnClickOutSide.vue';
+import OnClickOutside from './Plugins/OnClickOutSide.vue'
 
 export default {
   data() {
     return {
       open: false,
-    };
+    }
   },
   props: ['title', 'actions'],
   components: {
@@ -31,9 +35,9 @@ export default {
   methods: {
     handleClickOutside() {
       if (this.open) {
-        this.open = false;
+        this.open = false
       }
     },
   },
-};
+}
 </script>

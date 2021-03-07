@@ -7,27 +7,27 @@ const state = {
     enable: false,
     opacity: 0.25,
   },
-};
+}
 
-const getters = {};
+const getters = {}
 
 const actions = {
   setLoading({ commit }, status) {
-    commit('setLoading', status);
+    commit('setLoading', status)
   },
   setErrors({ commit }, errors) {
-    commit('setErrors', errors);
+    commit('setErrors', errors)
   },
-};
+}
 
 const mutations = {
   setLoading(state, status) {
-    state.loading.enable = status;
+    state.loading.enable = status
   },
   setErrors(state, errors) {
-    state.errors = errors;
+    state.errors = errors
   },
-};
+}
 
 export default {
   namespaced: true,
@@ -35,4 +35,4 @@ export default {
   getters,
   actions,
   mutations,
-};
+}

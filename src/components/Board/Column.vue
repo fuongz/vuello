@@ -6,11 +6,16 @@
       :get-child-payload="getColumnPayload(board.id)"
       :drop-placeholder="upperDropPlaceholderOptions"
     >
-
-      <Draggable v-for="taskGroup in board.board.task_groups" :key="taskGroup.id">
+      <Draggable
+        v-for="taskGroup in board.board.task_groups"
+        :key="taskGroup.id"
+      >
         <div class="TaskGroup">
           <div class="TaskGroup-Head">
-            <h3 class="TaskGroup-Head__Title" @click="$modal.show('board-modal', taskGroup)">
+            <h3
+              class="TaskGroup-Head__Title"
+              @click="$modal.show('board-modal', taskGroup)"
+            >
               {{ taskGroup.name }}
             </h3>
           </div>
@@ -62,15 +67,15 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import { Container, Draggable } from 'vue-smooth-dnd';
+import { mapActions } from 'vuex'
+import { Container, Draggable } from 'vue-smooth-dnd'
 
-import { applyDrag } from '../../_services/dnd';
+import { applyDrag } from '../../_services/dnd'
 
-import { reOrder as CardReorder } from '../../api/task';
-import { reOrder as GroupReorder } from '../../api/taskGroup';
+import { reOrder as CardReorder } from '../../api/task'
+import { reOrder as GroupReorder } from '../../api/taskGroup'
 
-import Task from './Task.vue';
+import Task from './Task.vue'
 
 export default {
   components: {
@@ -78,7 +83,12 @@ export default {
     Draggable,
     Task,
   },
-  props: ['board'],
+  props: {
+    board: {
+      type: Object,
+      default: null,
+    },
+  },
   data() {
     return {
       upperDropPlaceholderOptions: {
@@ -91,7 +101,7 @@ export default {
         animationDuration: '150',
         showOnTop: true,
       },
-    };
+    }
   },
   methods: {
     ...mapActions('ui', ['setLoading']),
@@ -100,61 +110,62 @@ export default {
      * On drop a card
      */
     async onDrop(event, taskGroupId) {
-      this.setLoading(true);
-      if (event === null) return;
+      this.setLoading(true)
+      if (event === null) return
       if (event.removedIndex !== null || event.addedIndex !== null) {
-        const board = { ...this.board.board };
-        const column = board.task_groups.filter((p) => p.id === taskGroupId)[0];
-        const columnIndex = board.task_groups.indexOf(column);
-        const newColumn = { ...column };
-        newColumn.tasks = applyDrag(newColumn.tasks, event);
-        board.task_groups.splice(columnIndex, 1, newColumn);
-        this.board.board = board;
-
+        const board = { ...this.board.board }
+        const column = board.task_groups.filter((p) => p.id === taskGroupId)[0]
+        const columnIndex = board.task_groups.indexOf(column)
+        const newColumn = { ...column }
+        newColumn.tasks = applyDrag(newColumn.tasks, event)
+        board.task_groups.splice(columnIndex, 1, newColumn)
+        // this.board.board = board;
         if (event.addedIndex !== event.removedIndex) {
           const currentIndex = board.task_groups[columnIndex].tasks.findIndex(
-            (group) => group.id === event.payload.id,
-          );
+            (group) => group.id === event.payload.id
+          )
 
-          const prevItem = board.task_groups[columnIndex].tasks[currentIndex - 1];
-          const nextItem = board.task_groups[columnIndex].tasks[currentIndex + 1];
+          const prevItem =
+            board.task_groups[columnIndex].tasks[currentIndex - 1]
+          const nextItem =
+            board.task_groups[columnIndex].tasks[currentIndex + 1]
 
-          await CardReorder(event.payload, prevItem, nextItem, taskGroupId);
+          await CardReorder(event.payload, prevItem, nextItem, taskGroupId)
 
-          this.$store.dispatch('board/refreshBoard', board.id);
+          this.$store.dispatch('board/refreshBoard', board.id)
         }
       }
-      this.setLoading(false);
+      this.setLoading(false)
     },
 
     /**
      * On move a column
      */
     async onColumnDrop(dropResult) {
-      this.setLoading(true);
+      this.setLoading(true)
 
-      const board = { ...this.board.board };
-      board.task_groups = applyDrag(board.task_groups, dropResult);
-      this.board.board = board;
+      const board = { ...this.board.board }
+      board.task_groups = applyDrag(board.task_groups, dropResult)
+      // this.board.board = board;
 
       if (dropResult.addedIndex !== dropResult.removedIndex) {
         const currentGroup = board.task_groups.findIndex(
-          (group) => group.id === dropResult.payload.id,
-        );
+          (group) => group.id === dropResult.payload.id
+        )
 
-        const prevItem = board.task_groups[currentGroup - 1];
-        const nextItem = board.task_groups[currentGroup + 1];
+        const prevItem = board.task_groups[currentGroup - 1]
+        const nextItem = board.task_groups[currentGroup + 1]
 
-        await GroupReorder(dropResult.payload, prevItem, nextItem);
+        await GroupReorder(dropResult.payload, prevItem, nextItem)
 
-        this.$store.dispatch('board/refreshBoard', board.id);
+        this.$store.dispatch('board/refreshBoard', board.id)
       }
 
-      this.setLoading(false);
+      this.setLoading(false)
     },
 
     getColumnPayload() {
-      return (index) => this.board.board.task_groups[index];
+      return (index) => this.board.board.task_groups[index]
     },
 
     /**
@@ -163,15 +174,16 @@ export default {
     getCardPayload(columnId) {
       // eslint-disable-next-line arrow-body-style
       return (index) => {
-        return this.board.board.task_groups.filter((taskGroup) => taskGroup.id === columnId)[0]
-          .tasks[index];
-      };
+        return this.board.board.task_groups.filter(
+          (taskGroup) => taskGroup.id === columnId
+        )[0].tasks[index]
+      }
     },
   },
-};
+}
 </script>
 
-<style lang="scss">
+<style lang="postcss">
 .Board {
   @apply flex pb-8 items-start;
 }

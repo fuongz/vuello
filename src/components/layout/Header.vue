@@ -3,7 +3,9 @@
     <div class="bg-blue-900">
       <div class="container mx-auto px-4">
         <div class="flex items-center md:justify-between py-4">
-          <div class="w-1/2 md:w-auto text-center text-white text-2xl font-medium">
+          <div
+            class="w-1/2 md:w-auto text-center text-white text-2xl font-medium"
+          >
             <router-link to="/">Starter</router-link>
           </div>
 
@@ -18,9 +20,15 @@
                   />
                 </div>
                 <div class="sm:hidden md:block md:flex md:items-center ml-2">
-                  <span class="text-white text-sm mr-1">{{ user.user.email }}</span>
+                  <span class="text-white text-sm mr-1">{{
+                    user.user.email
+                  }}</span>
                   <div>
-                    <unicon name="angle-down" fill="#fff" class="align-middle ml-2" />
+                    <unicon
+                      name="angle-down"
+                      fill="#fff"
+                      class="align-middle ml-2"
+                    />
                   </div>
                 </div>
               </div>
@@ -50,15 +58,15 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import OnClickOutside from '../Plugins/OnClickOutSide.vue';
-import UserDropdown from './UserDropdown.vue';
+import { mapState } from 'vuex'
+import OnClickOutside from '../Plugins/OnClickOutSide.vue'
+import UserDropdown from './UserDropdown.vue'
 
 export default {
   data() {
     return {
       open: false,
-    };
+    }
   },
   components: {
     OnClickOutside,
@@ -70,9 +78,9 @@ export default {
   methods: {
     handleClickOutside() {
       if (this.open) {
-        this.open = false;
+        this.open = false
       }
     },
   },
-};
+}
 </script>
